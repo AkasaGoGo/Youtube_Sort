@@ -1,7 +1,7 @@
 CC = g++
 
 TARGET = YoutubeSort
-SRCS = main.cpp
+SRCS = main.cpp window.cpp callback.cpp
 OBJS = $(SRCS:.cpp=.o)
 $(TARGET): $(OBJS)
 	$(CC) -o $@ $^ -lgdi32
