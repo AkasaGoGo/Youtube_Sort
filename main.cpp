@@ -1,5 +1,6 @@
 // Windows アプリケーションの雛形
 #include "include/include.h"
+using namespace std;
 
 //メイン関数
 int WINAPI WinMain(
@@ -12,7 +13,9 @@ int WINAPI WinMain(
     Window wind(hInstance,TEXT("Youtube"));
     ShowWindow(wind.hwnd, nCmdShow);
     UpdateWindow(wind.hwnd);
-
+    CSV csv(string("CH_LIST.csv"));
+    vector<vector<Channel>> chList;
+    csv.read(chList);
     while (GetMessage(&wind.msg, NULL, 0, 0) > 0)
     {
         TranslateMessage(&(wind.msg));
