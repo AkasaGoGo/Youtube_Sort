@@ -1,7 +1,5 @@
 #include "include/include.h"
 
-extern HWND hBtn;
-extern HINSTANCE hbInst;
 
 
 //ウィンドウプロシージャ
@@ -13,21 +11,28 @@ LRESULT CALLBACK WndProc(
     TCHAR szTemp[1024];
     HDC hdc;
     PAINTSTRUCT ps;
+
+    HWND hBtn[3];
+
+
+    HINSTANCE hbInst;
+
     static HPEN hpen,hpenPrev;
     static HBRUSH hbr, hbrPrev;
-
+    static HMENU hMenu;
     switch (uMsg)
     {
     case WM_CREATE:
         hpen = CreatePen(PS_SOLID, 1, RGB(0x00, 0x7f, 0xff));
         //hbr = CreateHatchBrush(HS_DIAGCROSS,RGB(0xff, 0xbf, 0x00));
         hbr = (HBRUSH)GetStockObject(LTGRAY_BRUSH);
-        hBtn =CreateWindowEx(0,"BUTTON","Push",WS_CHILD | WS_VISIBLE | BS_FLAT,10,100,50,30,hwnd,(HMENU)0,hbInst,NULL);
-        return 0;
-    case WM_KEYDOWN:
-        vkey = wParam;
-        wsprintf(szTemp,TEXT("WM_KEYDOWN (vkey:%d)"),vkey);
-        SetWindowText(hwnd,szTemp);
+        hBtn[0] =CreateWindowExW(0,L"Button",L"お気に入り",WS_CHILD | WS_VISIBLE | BS_FLAT,10,100,100,30,hwnd,(HMENU)0,hbInst,NULL);
+        hBtn[1] =CreateWindowExW(0,L"Button",L"五十音順",WS_CHILD | WS_VISIBLE | BS_FLAT,10,150,100,30,hwnd,(HMENU)0,hbInst,NULL);
+        hBtn[2] =CreateWindowExW(0,L"Button",L"グループ",WS_CHILD | WS_VISIBLE | BS_FLAT,10,200,100,30,hwnd,(HMENU)0,hbInst,NULL);
+        
+        
+        hMenu = LoadMenu(NULL,"WIN_MENU");
+        SetMenu(hwnd,hMenu);
         return 0;
     case WM_LBUTTONDOWN:
         y = HIWORD(lParam);
@@ -45,6 +50,10 @@ LRESULT CALLBACK WndProc(
 
         EndPaint(hwnd,&ps);
         return 0;
+
+    case WM_COMMAND:
+        return 0;
+
     case WM_DESTROY:
         DeleteObject(hpen);
         DeleteObject(hbr);

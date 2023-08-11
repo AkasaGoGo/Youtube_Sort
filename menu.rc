@@ -1,0 +1,5 @@
+WIN_MENU MENU{
+    POPUP "ファイル"{
+        MENUITEM "開く", 40001
+    }
+}

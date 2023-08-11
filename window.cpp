@@ -1,8 +1,5 @@
 #include "include/include.h"
 
-extern HWND hBtn;
-extern HINSTANCE hbInst;
-
 
 
 Window::Window(HINSTANCE hI, TCHAR appName[]){
@@ -23,7 +20,7 @@ Window::Window(HINSTANCE hI, TCHAR appName[]){
 
     hwnd = CreateWindow(
         appName,
-        TEXT("TEST"),
+        TEXT("YoutubeSort"),
         WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT,
         CW_USEDEFAULT,

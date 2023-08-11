@@ -1,9 +1,5 @@
 // Windows アプリケーションの雛形
 #include "include/include.h"
-HWND hBtn;
-HINSTANCE hbInst;
-
-
 
 //メイン関数
 int WINAPI WinMain(
@@ -13,7 +9,7 @@ int WINAPI WinMain(
     int nCmdShow             //ウィンドウの表示状態
 )
 {
-    Window wind(hInstance,TEXT("test"));
+    Window wind(hInstance,TEXT("Youtube"));
     ShowWindow(wind.hwnd, nCmdShow);
     UpdateWindow(wind.hwnd);
 

@@ -3,13 +3,17 @@ CC = g++
 TARGET = YoutubeSort
 SRCS = main.cpp window.cpp callback.cpp
 OBJS = $(SRCS:.cpp=.o)
-$(TARGET): $(OBJS)
-	$(CC) -o $@ $^ -lgdi32
 
-$(OBJS): $(SRCS)
-	$(CC) -c $(SRCS)
+RC = windres
+RESOURCE = menu.rc
+OBJR = $(RESOURCE:.rc=.o)
+$(TARGET):
+	$(CC) -o $@ $(OBJS) $(OBJR) -lgdi32
 
-all: clean $(OBJS) $(TARGET)
+$(OBJR): $(RESOURCE)
+	$(RC) $(RESOURCE) $(OBJR)
+
+all: clean $(OBJS) $(OBJR) $(TARGET)
 
 clean:
 	-rm -f $(OBJS) $(TARGET) *.d
