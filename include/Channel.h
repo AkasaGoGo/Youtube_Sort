@@ -7,6 +7,7 @@ class Channel{
 public:
     string id;
     string name;
+    bool fav = false;
     Channel(string, string);
     void print();
 };

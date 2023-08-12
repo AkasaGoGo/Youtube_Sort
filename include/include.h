@@ -6,12 +6,14 @@
 #include <wchar.h>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 #include <fstream>
 
 #include "window.h"
 #include "callback.h"
 #include "Channel.h"
 #include "CSV.h"
+#include "Sort.h"
 using namespace std;
 
 

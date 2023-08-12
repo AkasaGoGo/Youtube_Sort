@@ -1,7 +1,7 @@
 CC = g++
 
 TARGET = YoutubeSort
-SRCS = main.cpp window.cpp callback.cpp CSV.cpp Channel.cpp
+SRCS = main.cpp window.cpp callback.cpp CSV.cpp Channel.cpp Sort.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 RC = windres
