@@ -1,7 +1,7 @@
 # Youtube_Sort
 This rep. is made by Programing clu of KIT <br>
 
-Youtubeの登録チャンネルの動画を、名前、お気に入り順などで簡単にソートできるWindows PCアプリケーション。<br>
+Youtubeの登録チャンネルの動画を、名前、お気に入り順などで簡単にソートできるWindows PCアプリ。<br>
 あなたのチャンネルIDを入力すると、登録チャンネル一覧と登録チャンネルの動画の情報が手に入る。<br>
 
 # Input
