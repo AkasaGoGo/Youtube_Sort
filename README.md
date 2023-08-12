@@ -5,7 +5,7 @@ Youtubeの登録チャンネルの動画を、名前、お気に入り順など�
 あなたのチャンネルIDを入力すると、登録チャンネル一覧と登録チャンネルの動画の情報が手に入る。<br>
 
 # API
-YOUTUBE_DATA_API v3
+Youtube Data API v3
 
 # Input
 Your Youtube_channel_id
