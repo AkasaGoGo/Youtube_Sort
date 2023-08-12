@@ -23,6 +23,6 @@ int WINAPI WinMain(
         TranslateMessage(&(wind.msg));
         DispatchMessage(&(wind.msg));
     }
-
+    
     return wind.msg.wParam;
 }
