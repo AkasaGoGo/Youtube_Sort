@@ -43,43 +43,12 @@ def get_channel_Id(search_query):
         channel_id = channels_request["items"][0]["id"]["channelId"]
         # print("チャンネルID:", channel_id)
     else:
-        print("チャンネルが見つかりませんでした")
+        channel_id = 0
     return channel_id
 
-channel_name = channel_name()
-for name in channel_name:
-    channel_ID = get_channel_Id(name)
-    print("チャンネル名", channel_ID)
-    
-"""
-    channels_response = channels_request.execute()
-    
-    channels = []
-    
-    for channel in channels_response.get('items', []):
-        if channel["kind"] == "youtube#channel":
-            channel_info = (channel['snippet']['channelTitle'], channel['snippet']['title'], channel['id'])
-            channels.append(channel_info)
-    
-    return channels
-    """
-    
-   
-    
-# チャンネル名(ex) 湊あくあ)があればチャンネルID()を取得して返す
-def getChannelId(channel_id):
-    channel_response = youtube.channels().list(part="snippet", id=channel_id, maxResults=5).execute()
-    return channel_response
-    # if "items" in channel_response:
-    #     channel_id = channel_response["items"][0]["id"]
-    #     return channel_id
-    # else:
-    #     return None
-
-# print(getChannelId('UC1opHUrw8rvnsadT-iGp7Cg'))
+# チャンネルidから登録チャンネルのホーム画面に移動するプログラム
 
 # チャンネルIDからチャンネルの全動画のプレイリストIDを取得
-# 引数に channel_id をとる。この時点で channel_id は未知（"湊アクア" のようなチャンネル名ではない）
 def getChannelPlaylistId(channel_id):
     channel = youtube.channels().list(part='snippet,contentDetails', id=channel_id).execute()
     item = channel['items'][0]
@@ -90,8 +59,8 @@ def getChannelPlaylistId(channel_id):
 def getVideoIds(playlist_id, page_token):
     items_info = youtube.playlistItems().list(part='contentDetails', playlistId=playlist_id, maxResults=10, pageToken=page_token).execute()
     video_ids = list(map(lambda item: item['contentDetails']['videoId'], items_info['items']))
-    if 'nextPageToken' in items_info:
-        video_ids.extend(getVideoIds(playlist_id, items_info['nextPageToken']))
+    # if 'nextPageToken' in items_info:
+    #     video_ids.extend(getVideoIds(playlist_id, items_info['nextPageToken']))
     return video_ids
 
 # 動画IDから動画の情報を取得
@@ -102,11 +71,17 @@ def getVideos(video_ids):
         videos.extend(video_info['items'])
     return videos
 
-# channel_id = 'UC9WJo5ZJVXMZiA5XV2jLx5Q'
-# playlist_id = getChannelPlaylistId(channel_id)
-# video_ids = getVideoIds(playlist_id, None)
-# videos = getVideos(video_ids)
 
-# for video in videos:
-#     print(video['snippet']['title'], ',', 'https://youtube.com/watch?v=' + video['id'])
+"""
+name = "広島東洋カープ公式"
+
+channel_id = get_channel_Id(name)
+print("channel_id :", channel_id)
+
+playlist_id = getChannelPlaylistId(channel_id)
+video_ids = getVideoIds(playlist_id, None)
+videos = getVideos(video_ids)
+for video in videos:
+    print(video['snippet']['title'], ',', 'https://youtube.com/watch?v=' + video['id'])
+"""
     
