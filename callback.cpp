@@ -4,7 +4,16 @@
 #define BUTTON_ID_LIST  10003
 #define BUTTON_ID_UP    10004
 #define BUTTON_ID_DOWN  10005
-
+//SETTING
+#define ACCOUNT_SETTING 40001
+#define ACCOUNT_URL     10006
+//COLOR
+#define RED             40006
+#define ORANGE          40007
+#define YELLOW          40008
+#define GREEN           40009
+#define BLUE            40010
+#define PURPLE          40011
 
 extern vector<Channel> chList;
 
@@ -18,7 +27,6 @@ LRESULT CALLBACK WndProc(
 
     static vector<Channel*> showCh(chList.size());
     static int start = 0;
-    
     TCHAR szTemp[1024];
     HDC hdc;
     PAINTSTRUCT ps;
@@ -31,6 +39,9 @@ LRESULT CALLBACK WndProc(
     static HBRUSH hbr, hbrPrev;
     static HBRUSH fillFev,notFev;
     static HMENU hMenu;
+    static HWND  hUrlEditor,hUrlBtn;
+    static LPSTR strText;
+
     switch (uMsg)
     {
     case WM_CREATE:
@@ -50,6 +61,9 @@ LRESULT CALLBACK WndProc(
 
         hMenu = LoadMenu(NULL,"WIN_MENU");
         SetMenu(hwnd,hMenu);
+
+        
+
         return 0;
     case WM_LBUTTONDOWN:
         y = HIWORD(lParam);
@@ -108,6 +122,26 @@ LRESULT CALLBACK WndProc(
             case BUTTON_ID_FAV:
                 sort(chList.begin(),chList.end(),cmp_fev);
                 start = 0;
+                break;
+            case ACCOUNT_SETTING:
+                hUrlEditor= CreateWindow(
+                    TEXT("EDIT"),TEXT("User Youtube URL"),
+                    WS_CHILD | WS_VISIBLE | WS_BORDER |ES_LEFT,
+                    0,0,200,30,hwnd,(HMENU)6,
+                    hbInst,NULL
+                );
+                hUrlBtn = CreateWindow(
+                    TEXT("Button"),TEXT("OK"),
+                    WS_CHILD | WS_VISIBLE | BS_FLAT,
+                    200,0,50,30,hwnd,(HMENU)ACCOUNT_URL,
+                    hbInst,NULL
+                );
+                break;
+            case ACCOUNT_URL:
+                GetWindowTextA(hwnd,strText,5000);
+                
+                cout << strText;
+                
         }
         InvalidateRect(hwnd,NULL,TRUE);
         return 0;
