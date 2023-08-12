@@ -4,7 +4,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 import googleapiclient.errors
 
 # 必要なAPIキーまたは認証情報を設定
-YOUTUBE_DATA_API_KEY = "AIzaSyDgaMBZf-ZbtdOhthFzXynpMRxUNxn-PkE"  # YOUTUBE_DATA_APIキーを入力
+YOUTUBE_DATA_API_KEY = "YOUTUBE_DATA_API_KEY"  # YOUTUBE_DATA_APIキーを入力
 
 SCOPES = 'https://www.googleapis.com/auth/youtube.force-ssl'
 CLIENT_SECRETS_FILE = "client_secret.json"

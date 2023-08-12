@@ -193,3 +193,13 @@ cython_debug/
 *.exe
 *.out
 *.app
+
+# client_secret.json
+client_secret_mine.json
+client_secret.json
+
+# YOUTUBE_DATA_API_KEY
+API_KEY.txt
+
+# csv_file
+channel_reports*.csv
