@@ -4,9 +4,11 @@ import googleapiclient.errors
 
 import pandas as pd
 import os
+import json
 
 # YOUTUBE_DATA_APIを使用するためのパラメータ
-API_KEY = "YOUTUBE_DATA_API_KEY"
+# API_KEY = "YOUTUBE_DATA_API_KEY"
+API_KEY = "AIzaSyDgaMBZf-ZbtdOhthFzXynpMRxUNxn-PkE" 
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
@@ -24,19 +26,32 @@ def channel_name():
 
 # print(channel_name())
 
-# TODO チャンネル名をキーワードとして扱う
-def getURL(q):
-    youtube = googleapiclient.discovery.build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION)
+# チャンネル名からチャンネルIdを取得する
+def get_channel_Id(search_query):
+    youtube = googleapiclient.discovery.build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=API_KEY)
     
     # 自分のチャンネル一覧を取得するリクエストを作成
-    channels_request = youtube.channels().list(
-        part='snippet',
-        q=q,
-        maxResults=5,
-        type="video"  
-    )
+    channels_request = youtube.search().list(
+        part='id',
+        type = "channel",
+        q=search_query,
+        maxResults=1
+    ).execute()
     
-    """
+    # 検索結果からチャンネルIDを取得
+    if "items" in channels_request:
+        channel_id = channels_request["items"][0]["id"]["channelId"]
+        # print("チャンネルID:", channel_id)
+    else:
+        print("チャンネルが見つかりませんでした")
+    return channel_id
+
+channel_name = channel_name()
+for name in channel_name:
+    channel_ID = get_channel_Id(name)
+    print("チャンネル名", channel_ID)
+    
+"""
     channels_response = channels_request.execute()
     
     channels = []
@@ -49,6 +64,8 @@ def getURL(q):
     return channels
     """
     
+   
+    
 # チャンネル名(ex) 湊あくあ)があればチャンネルID()を取得して返す
 def getChannelId(channel_id):
     channel_response = youtube.channels().list(part="snippet", id=channel_id, maxResults=5).execute()
@@ -59,7 +76,7 @@ def getChannelId(channel_id):
     # else:
     #     return None
 
-print(getChannelId('UC1opHUrw8rvnsadT-iGp7Cg'))
+# print(getChannelId('UC1opHUrw8rvnsadT-iGp7Cg'))
 
 # チャンネルIDからチャンネルの全動画のプレイリストIDを取得
 # 引数に channel_id をとる。この時点で channel_id は未知（"湊アクア" のようなチャンネル名ではない）
