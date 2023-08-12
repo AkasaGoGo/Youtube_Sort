@@ -7,8 +7,9 @@ class Channel{
 public:
     string id;
     string name;
+    string url;
     bool fav = false;
-    Channel(string, string);
+    Channel(string, string, string);
     void print();
 };
 

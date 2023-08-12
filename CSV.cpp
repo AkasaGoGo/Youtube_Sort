@@ -24,9 +24,8 @@ void CSV::read(vector<Channel> &contents){
         for(;pos < l && (pos = buf.find(separator, pos)) != string::npos; prev = (pos+=sl)) {
             string item = buf.substr(prev,pos - prev);
             bufline.push_back(item);
-            cout << item << endl;
         }
-        contents.push_back(Channel(bufline[2],bufline[0]));
+        contents.push_back(Channel(bufline[1],bufline[0],bufline[2]));
 
     }
 }

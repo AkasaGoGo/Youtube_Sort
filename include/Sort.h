@@ -3,5 +3,7 @@
 
 #include "include.h"
 
+bool cmp_channels(const Channel);
+
 bool cmp_fev(const Channel &a, const Channel &b);
 #endif

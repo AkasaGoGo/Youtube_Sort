@@ -1,3 +1,2 @@
-print("hello world")
-print("I am Tom.")
-print("She is Bekky.")
+import sys
+print(sys.argv[1])
