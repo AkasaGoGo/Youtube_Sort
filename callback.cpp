@@ -141,18 +141,17 @@ LRESULT CALLBACK WndProc(
             hbr = (HBRUSH)GetStockObject(LTGRAY_BRUSH);
             fillFev = CreateSolidBrush(RGB(255, 0, 0));
             notFev = CreateSolidBrush(RGB(255, 255, 255));
+
             hBtn[0] = CreateWindowExW(0, L"Button", L"お気に入り", WS_CHILD | WS_VISIBLE | BS_FLAT, 10, 100, 100, 30, hwnd, (HMENU)BUTTON_ID_FAV, hbInst, NULL);
             hBtn[1] = CreateWindowExW(0, L"Button", L"五十音順", WS_CHILD | WS_VISIBLE | BS_FLAT, 10, 150, 100, 30, hwnd, (HMENU)BUTTON_ID_ABC, hbInst, NULL);
             hBtn[2] = CreateWindowExW(0, L"Button", L"グループ", WS_CHILD | WS_VISIBLE | BS_FLAT, 10, 200, 100, 30, hwnd, (HMENU)BUTTON_ID_LIST, hbInst, NULL);
             hBtn[3] = CreateWindowExW(0, L"Button", L"↑", WS_CHILD | WS_VISIBLE | BS_FLAT, 700, 100, 30, 30, hwnd, (HMENU)BUTTON_ID_UP, hbInst, NULL);
             hBtn[4] = CreateWindowExW(0, L"Button", L"↓", WS_CHILD | WS_VISIBLE | BS_FLAT, 700, 250, 30, 30, hwnd, (HMENU)BUTTON_ID_DOWN, hbInst, NULL);
-            cout << "ddd";
             for (int i = 0; i < chList.size(); i++)
             {
                 showCh.push_back(&(chList[i]));
             }
             isOpen = true;
-            cout << "sdsd";
             break;
         }
         InvalidateRect(hwnd, NULL, TRUE);
