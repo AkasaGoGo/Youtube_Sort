@@ -4,9 +4,10 @@
 #include "include.h"
 using namespace std;
 class Channel{
-    wstring id;
-    wstring name;
-    Channel(wstring, wstring);
+public:
+    string id;
+    string name;
+    Channel(string, string);
     void print();
 };
 

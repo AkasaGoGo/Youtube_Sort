@@ -1,5 +1,6 @@
 #include "include/include.h"
 
+extern vector<Channel> chList;
 
 
 //ウィンドウプロシージャ
@@ -8,6 +9,7 @@ LRESULT CALLBACK WndProc(
 {
     int vkey;
     static int x,y;
+    static Channel* showCh[5];
     TCHAR szTemp[1024];
     HDC hdc;
     PAINTSTRUCT ps;
@@ -30,7 +32,6 @@ LRESULT CALLBACK WndProc(
         hBtn[1] =CreateWindowExW(0,L"Button",L"五十音順",WS_CHILD | WS_VISIBLE | BS_FLAT,10,150,100,30,hwnd,(HMENU)0,hbInst,NULL);
         hBtn[2] =CreateWindowExW(0,L"Button",L"グループ",WS_CHILD | WS_VISIBLE | BS_FLAT,10,200,100,30,hwnd,(HMENU)0,hbInst,NULL);
         
-        
         hMenu = LoadMenu(NULL,"WIN_MENU");
         SetMenu(hwnd,hMenu);
         return 0;
@@ -47,8 +48,14 @@ LRESULT CALLBACK WndProc(
         Rectangle(hdc,x-30,y-30,x+30,y+30);
         SelectObject(hdc,hpenPrev);
         SelectObject(hdc,hbrPrev);
-
         EndPaint(hwnd,&ps);
+        hdc = GetDC(hwnd);
+        
+        for( int i = 0; i < chList.size();i++){
+            TextOut(hdc,400,100+i*30,chList[i].name.c_str(),chList[i].name.length());
+        }
+        ReleaseDC(hwnd,hdc);
+        
         return 0;
 
     case WM_COMMAND:

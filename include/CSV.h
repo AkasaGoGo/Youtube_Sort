@@ -7,10 +7,10 @@ using namespace std;
 class CSV{
 public:
     string fname;
-    wifstream ifs;
+    ifstream ifs;
 
     CSV(string);
-    void read(vector<vector<Channel>> &contents);
+    void read(vector<Channel> &contents);
 };
 
 #endif

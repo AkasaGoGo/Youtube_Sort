@@ -10,25 +10,23 @@ CSV::CSV(string str){
     }
 }
 
-void CSV::read(vector<vector<Channel>> &contens){
-    wchar_t str[128];
-    wstring buf = L"",separator = L",";
-    vector<wstring> sep;
-    wstring::size_type pos = 0,prev = 0;
+void CSV::read(vector<Channel> &contents){
+    char str[1024];
+    string buf,separator = u8",";
+    vector<string> sep;
+    string::size_type pos = 0,prev = 0;
     int l = 0,sl = separator.length();
-    int ct = 0;
-    while(ifs.getline(str,100)){
-        ct = 0;
+    while(ifs.getline(str,500)){
+        vector<string> bufline;
         pos = 0;prev = 0;
-        buf = wstring(str) + separator;
-        wcout << buf;
+        buf = string(str) + separator;
         l = buf.length();
-
-        for(;pos < l && (pos = buf.find(separator, pos)) != wstring::npos; prev = (pos+=sl)) {
-            wstring item = buf.substr(prev,pos - prev);
-            ct++;
-            wcout << item << endl;
+        for(;pos < l && (pos = buf.find(separator, pos)) != string::npos; prev = (pos+=sl)) {
+            string item = buf.substr(prev,pos - prev);
+            bufline.push_back(item);
+            cout << item << endl;
         }
+        contents.push_back(Channel(bufline[2],bufline[0]));
 
     }
 }
