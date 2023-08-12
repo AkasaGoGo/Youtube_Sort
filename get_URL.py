@@ -2,10 +2,8 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 import googleapiclient.errors
 
-import json
-import os
 import pandas as pd
-import sys
+
 
 # YOUTUBE_DATA_APIを使用するためのパラメータ
 # API_KEY = "YOUTUBE_DATA_API_KEY"
@@ -18,7 +16,7 @@ youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=API_
 
 # csvファイルの読み込んで、チャンネル名を返す
 def get_channel_name():
-    channel_reports = pd.read_csv('channel_reports_2.csv')
+    channel_reports = pd.read_csv('channel_reports.csv')
 
     channel_name = []
     for name in channel_reports['チャンネル名']:
@@ -74,16 +72,19 @@ def get_Videos(video_ids):
 
 channel_name = get_channel_name()
 
-channels = []
-for name in channel_name:
-    # チャンネル名からチャンネルidを取得
-    channel_id = get_channel_Id(name)
-    # チャンネルidからチャンネルのホーム画面のURLを取得
-    channel_URL = get_Channel_Homepage(channel_id)
-    channels.append((name, channel_id, channel_URL))
 
-channel_URLs = pd.DataFrame(channels, columns=["チャンネル名", "channel_id","URL"])
-channel_URLs.to_csv("channel_URLs.csv", index=False, encoding='utf-8')
+if __name__ == "__main__":
+    
+    channels = []
+    for name in channel_name:
+        # チャンネル名からチャンネルidを取得
+        channel_id = get_channel_Id(name)
+        # チャンネルidからチャンネルのホーム画面のURLを取得
+        channel_URL = get_Channel_Homepage(channel_id)
+        channels.append((name, channel_id, channel_URL))
+        print("hello")
+    channel_URLs = pd.DataFrame(channels, columns=["チャンネル名", "channel_id","URL"])
+    channel_URLs.to_csv("channel_URLs.csv", index=False, encoding='utf-8')
 
 """
 playlist_id = getChannelPlaylistId(channel_id)
