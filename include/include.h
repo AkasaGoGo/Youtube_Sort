@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <string>
 #include <wchar.h>
+#include <stdio.h>
 #include <vector>
 #include <iostream>
 #include <algorithm>

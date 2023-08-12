@@ -1,7 +1,7 @@
 #include "include/include.h"
 using namespace std;
 
-CSV::CSV(string str){
+void CSV::open(string str){
     fname = str;
     ifs.open(fname);
     if(ifs.fail()){

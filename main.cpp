@@ -2,6 +2,7 @@
 #include "include/include.h"
 using namespace std;
 vector<Channel> chList;
+CSV csv;
 
 //メイン関数
 int WINAPI WinMain(
@@ -12,8 +13,6 @@ int WINAPI WinMain(
 )
 {
     SetConsoleOutputCP(CP_UTF8);
-    CSV csv(string(u8"CH_LIST.csv"));
-    csv.read(chList);
     
     Window wind(hInstance,TEXT("Youtube"));
     ShowWindow(wind.hwnd, nCmdShow);

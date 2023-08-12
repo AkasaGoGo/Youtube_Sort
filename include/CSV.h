@@ -9,7 +9,7 @@ public:
     string fname;
     ifstream ifs;
 
-    CSV(string);
+    void open(string);
     void read(vector<Channel> &contents);
 };
 
