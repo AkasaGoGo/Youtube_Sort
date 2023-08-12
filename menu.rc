@@ -1,0 +1,27 @@
+WIN_MENU MENU{
+    POPUP "設定"{
+        MENUITEM "アカウント名", 40001
+        POPUP "記憶"{
+            MENUITEM "ON",40002
+            MENUITEM "OFF",40003
+        }
+    }
+    POPUP "見た目"{
+        POPUP "文字サイズ"{
+            MENUITEM "大きく",40004
+            MENUITEM "小さく",40005
+        }
+        POPUP "お気に入りカラー"{
+            MENUITEM "赤",40006
+            MENUITEM "橙",40007
+            MENUITEM "黄",40008
+            MENUITEM "緑",40009
+            MENUITEM "青",40010
+            MENUITEM "紫",40011
+        }
+    }
+    POPUP "昇・降"{
+        MENUITEM "昇順", 40012
+        MENUITEM "降順", 40013
+    }
+}
