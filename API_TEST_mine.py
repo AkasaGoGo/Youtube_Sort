@@ -5,7 +5,7 @@ import googleapiclient.errors
 import pandas as pd
 
 # 必要なAPIキーまたは認証情報を設定
-API_KEY = "AIzaSyDgaMBZf-ZbtdOhthFzXynpMRxUNxn-PkE"  # あなたのAPIキーを入力　# 最終的に消去する
+API_KEY = "YOUTUBE_DATA_API_KEY"  # あなたのAPIキーを入力　# 最終的に消去する
 
 SCOPES = 'https://www.googleapis.com/auth/youtube.force-ssl'
 CLIENT_SECRETS_FILE = "client_secret.json" # OAuth 2.0 の認証に必要なファイル

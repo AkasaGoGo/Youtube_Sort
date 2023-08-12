@@ -5,7 +5,7 @@ import googleapiclient.errors
 import pandas as pd
 
 # 必要なAPIキーまたは認証情報を設定
-API_KEY = "AIzaSyDgaMBZf-ZbtdOhthFzXynpMRxUNxn-PkE"  # あなたのAPIキーを入力　# 最終的に環境変数として指定する
+API_KEY = "YOUTUBE_DATA_API_KEY"  # あなたのAPIキーを入力　# 最終的に環境変数として指定する
 
 SCOPES = 'https://www.googleapis.com/auth/youtube.force-ssl'
 
@@ -20,7 +20,7 @@ def get_authenticated_service():
     credentials = flow.run_local_server(port=8086)
     return credentials
 
-def main():
+def main(channelId):
     # 認証情報を取得
     credentials = get_authenticated_service()
 
@@ -31,7 +31,7 @@ def main():
         # 自分がチャンネル登録した動画を取得
         subscriptions_request = youtube.subscriptions().list(
             part='snippet',
-            channelId = 'UCHC_xxR2kbIcVtMCGRIvcoA', # youtube の channelId
+            channelId = channelId, # youtube の channelId
             maxResults=10  # 取得する最大件数を指定（最大50件まで）
         )
         subscriptions_response = subscriptions_request.execute()
@@ -56,4 +56,5 @@ def main():
         print("An error occurred:", e)
 
 if __name__ == "__main__":
-    main()
+    channelId = "YOUR_CHANNELID"
+    main(channelId)

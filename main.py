@@ -11,7 +11,7 @@ SCOPES = 'https://www.googleapis.com/auth/youtube.readonly'
 CLIENT_SECRETS_FILE = "client_secret.json"
 
 # maxのAPI_KEY
-YOUTUBE_API_KEY = "YOUR_YOUTUBE_API_KEY"  # あなたのAPIキーを入力
+YOUTUBE_API_KEY = "YOUTUBE_DATA_API_KEY"  # あなたのAPIキーを入力
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
